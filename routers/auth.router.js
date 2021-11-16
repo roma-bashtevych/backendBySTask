@@ -1,17 +1,19 @@
 const router = require('express').Router();
 
-const { constants: { USERNAME } } = require('../configuration')
-const { authMiddlewares: { validateLoginationData, validateAccessToken, validateRefreshToken },
-userMiddlewares: {
+const { constants: { USERNAME } } = require('../configuration');
+const {
+  authMiddlewares: { validateLoginationData, validateAccessToken, validateRefreshToken },
+  userMiddlewares: {
     getUserByDynamicParam,
     isUserNotPresent
-} } = require('../middlewares');
+  }
+} = require('../middlewares');
 const { authControllers: { loginUser, logoutUser, refresh } } = require('../controllers');
 
 router.post('/', validateLoginationData,
-    getUserByDynamicParam(USERNAME),
-    isUserNotPresent,
-    loginUser);
+  getUserByDynamicParam(USERNAME),
+  isUserNotPresent,
+  loginUser);
 
 router.post('/logout', validateAccessToken, logoutUser);
 

@@ -1,4 +1,4 @@
 module.exports = {
-    DRIVER: 'driver',
-    ADMIN: 'admin'
+  DRIVER: 'driver',
+  ADMIN: 'admin'
 };
