@@ -12,7 +12,7 @@ const {
 
 module.exports = {
   generateTokenPair: () => {
-    const access_token = jwt.sign({}, ACCESS_SECRET_KEY, { expiresIn: '30m' });
+    const access_token = jwt.sign({}, ACCESS_SECRET_KEY, { expiresIn: '1m' });
     const refresh_token = jwt.sign({}, REFRESH_SECRET_KEY, { expiresIn: '30d' });
 
     return {

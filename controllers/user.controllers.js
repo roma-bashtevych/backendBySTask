@@ -1,6 +1,6 @@
 const { statusCode, errorMessage: { UPDATE_MESSAGE } } = require('../configuration');
 const { userNormalizator: { userNormalizator } } = require('../utils');
-const { userServices, passwordServices } = require('../services');
+const { userServices, passwordServices, authServices } = require('../services');
 
 module.exports = {
   getAllUsers: async (req, res, next) => {
@@ -33,7 +33,7 @@ module.exports = {
   deleteUser: async (req, res, next) => {
     try {
       const { user_id } = req.params;
-
+      await authServices.deleteAllTokens({ _id: user_id });
       await userServices.deleteUser({ _id: user_id });
       res.sendStatus(statusCode.DELETED);
     } catch (e) {
