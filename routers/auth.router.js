@@ -8,7 +8,10 @@ userMiddlewares: {
 } } = require('../middlewares');
 const { authControllers: { loginUser, logoutUser, refresh } } = require('../controllers');
 
-router.post('/', validateLoginationData, getUserByDynamicParam(USERNAME), isUserNotPresent, loginUser);
+router.post('/', validateLoginationData,
+    getUserByDynamicParam(USERNAME),
+    isUserNotPresent,
+    loginUser);
 
 router.post('/logout', validateAccessToken, logoutUser);
 
